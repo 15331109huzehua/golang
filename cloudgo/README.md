@@ -39,23 +39,41 @@ func main() {
 
 **实验截图**
 
+![](https://github.com/15331109huzehua/golang/blob/master/cloudgo/images/%E6%8D%95%E8%8E%B71.PNG) 
 
-内部函数
+server
+--
+**代码**
 
-主要还是用了beego的框架函数来直接实现
+*主要还是用了beego的框架函数来直接实现*
 
 type MainController struct {
+
 	beego.Controller //beego控制器
 }
 
 func (this *MainController) Get() {
+
 	name := this.Ctx.Input.Param(":name")                       //获取路由信息
 	this.Ctx.WriteString("Welcome to this page, " + name + "!") //写入
 }
 
 func main() {
+
 	port := flag.String("port", "", "port:default is 8080") //传入端口号
 	flag.Parse()
 	beego.Router("/cloudgo/:name", &MainController{}) //路由设置
 	beego.Run(":" + *port)                            //运行
 }
+
+**实验截图**
+
+![](https://github.com/15331109huzehua/golang/blob/master/cloudgo/images/%E6%8D%95%E8%8E%B72.PNG) 
+
+**压力测试**
+
+![](https://github.com/15331109huzehua/golang/blob/master/cloudgo/images/%E6%8D%95%E8%8E%B73.PNG)
+
+结果：
+
+![](https://github.com/15331109huzehua/golang/blob/master/cloudgo/images/%E6%8D%95%E8%8E%B74.PNG)
